@@ -1,0 +1,67 @@
+body {
+}
+.page {
+	width: 100%;
+	height: 100%;
+}
+#search {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-image: url('../img/backgroud.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+#logo {
+	margin-top: 300px;
+	height: 80px;
+	width: 300px;
+	padding: 20px 0px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#log>img {
+	height: 100%;
+}
+#search_box {
+	position: relative;
+	width: 555px;
+	height: 40px;
+	margin-top: 50px; 
+	margin-left: auto;
+	margin-right: auto;
+	border: 0;
+	background-color: white;
+}
+#search_form {
+	width: 100%;
+	height: 100%;
+}
+
+#input_image {
+	height: 100%;
+	font-size: 23px;
+	margin-top: auto;
+	margin-bottom: auto;
+	padding: 3px 0px 3px 3px;
+	border: 0; 
+}
+#scale {
+	position: relative;
+	top: -40px;
+	left: 438px;
+	width: 117px;
+	height: 100%;
+	padding: 0 0;
+	font-size: 23px;
+}
+#submit {
+	position: relative;
+	top: -40px;
+	left: 118px;
+	width: 117px;
+	height: 100%;
+	float: right;
+	padding: 0 0;
+	font-size: 23px;
+}

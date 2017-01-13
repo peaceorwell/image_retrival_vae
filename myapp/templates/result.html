@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+{% block body %}
+<div id='logo'>
+	<img src="{{url_for('static', filename='img/logo.jpg')}}">
+</div>
+<div id='search_box'>
+	<form id='search_form' method="POST" action="{{url_for('upload')}}" enctype = 'multipart/form-data'>
+		<input id='input_image' type='file' name='image'>
+		<select name="scale" id='scale'>
+			<option value="40">40X</option>
+			<option selected='selected' value="100">100X</option>
+			<option value="200">200X</option>
+			<option value="400">400X</option>
+		</select>
+		<input id='submit' type="submit" value="Submit">
+	</form>	
+</div>
+<div id="origin">
+<div id='left'>
+	<div id="left_text">
+		<span>原始图片</span>
+	</div>
+	<div class="zoomPan" id="zoomPan">
+    	<img src={{ori_file}} width="400" height="400" />
+    	<div id="zoom" class="sh">
+    		<img src={{ori_file}} alt="" />
+    	</div>
+</div>
+</div>
+<div id='right'>
+	<div id='ori_type' class="type_list">
+		{% for idx in range(6) %}
+		<div>
+			<div class="inline_div">肿瘤类型:{{res_dict[idx][1]}}</div>
+			<div class="progress">
+				<div class="progress-bar" role="progressbar" aria-valuenow="{{res_dict[idx]}}" aria-valuemin="0" aria-valuemax="100" style="width: {{res_dict[idx][0]}}%;">
+				</div>
+			</div>
+			<div class="inline_div">
+				<span>确信度:{{res_dict[idx][0]}}%</span>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>	
+</div>
+<div id='results'>
+	<ul class="imglist">
+	{% for file in res_files %}
+	<li>
+        <div>
+           <a href="{{url_for('show_details',database_name=file[2],image_name=file[0].split('/')[-1])}}"><img src={{file[0]}} width="300" height="300"/></a>
+           <span class='type_name'>肿瘤类型:{{file[1]}}</span>
+        </div> 
+    </li> 
+	{% endfor %}
+	</ul>
+</div>
+{% block scripts %}
+{{super()}}
+<script type="text/javascript">
+function zoomBox() {this.index.apply(this, arguments)}
+zoomBox.prototype = {
+    index: function(win,zoom) {
+        var win=document.getElementById(win);
+        var box=document.getElementById(zoom);
+        var img=box.getElementsByTagName('IMG')[0];
+        var zoom=img.width/win.getElementsByTagName('IMG')[0].width;
+        var z=Math.round(box.offsetWidth/2);
+        win.onmousemove=function (e){
+            e = e || window.event;
+            var x=e.clientX,y=e.clientY, ori=win.getBoundingClientRect();
+            if (x>ori.right+10||y>ori.bottom+10||x<ori.left-10||y<ori.top-10)
+                box.style.display='none';
+            x-=ori.left;
+            y-=ori.top;
+            box.style.left=x+'px';
+            box.style.top=y+'px';
+            img.style.left= -x*zoom+ z+'px';
+            img.style.top= -y*zoom + z+'px';
+        }
+        win.onmouseover=function (){box.style.display=''}
+        win.onmouseout=function (){box.style.display='none'}
+    }
+};
+window.onload=function (){
+    x=new zoomBox('zoomPan','zoom');
+}	
+</script>
+{% endblock %}
+{% endblock %}

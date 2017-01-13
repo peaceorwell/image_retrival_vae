@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+{% block body %}
+<div id="search">
+<div id='logo'>
+	<img src="{{url_for('static',filename='img/logo.jpg')}}">
+</div>
+<div id='search_box'>
+<form id='search_form' method="POST" action="{{url_for('upload')}}" enctype = 'multipart/form-data'>
+	<input type="file" name="image" id="input_image" class="inputfile"/>
+	<select name="scale" id='scale'>
+			<option value="40">40X</option>
+			<option selected='selected' value="100">100X</option>
+			<option value="200">200X</option>
+			<option value="400">400X</option>
+		</select>
+    <input id='submit' type="submit" value="Submit">
+</form>	
+</div>
+</div>
+
+{% endblock %}

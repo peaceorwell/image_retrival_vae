@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+{% block head %}
+{% block styles %}
+<style type="text/css">
+#up {
+	position: relative;
+	height: 700px;
+	width: 100%;
+	border: 2px solid red;
+}
+#down {
+	height: 400px;
+	border: 2px solid red;
+}
+#zoomPan {
+	position: relative;
+	width: 500px;
+	margin: 100px auto;
+	border: 2px solid green;
+}
+.sh {
+	zoom: 1;
+	background: #eee;
+	filter:progid:DXImageTransform.Microsoft.dropShadow(color='#54000000', OffX=2,OffY=2);
+}
+#zoom {
+	position: absolute;
+	width: 200px;
+	height: 200px;
+	border:3px solid #fff;
+	left:-9999px;
+	top: 0px;
+	overflow: hidden;
+	background: #fff;
+}
+#zoom img {
+	position:relative;
+}
+</style>
+{% endblock %}
+{% endblock %}
+{% block body %}
+{% block content %}
+<div id='up'>
+	<div class="zoomPan" id="zoomPan">
+    	<img src={{res_list[0]}} width="500" height="500" />
+    	<div id="zoom" class="sh">
+    		<img src={{res_list[0]}} alt="" />
+    	</div>
+</div>
+<div id='down'>
+	<div>
+		<p>"病理报告的内容包括哪些？
+		病理报告的第一部分是患者信息和送检信息。
+		病理报告的第二部分是活检组织的肉眼观察。包括活检组织的全貌、活检部位、可疑癌肿的形状、边缘是否清楚以及活检组织的大小，如直径或长度、重量等。
+		病理报告的第三部分是叙述显微镜下观察到的结果，是在分子水平上对活检组织进行比较专业的描述。
+		镜下观察时，病理科医生还要注意观察活检组织的边缘。如果异常细胞的周围有一圈正常细胞，则该活检组织可描述为“边缘清晰”；并可认为所有的异常细胞已经通过获取组织的操作过程（如活检）去除。如果活检取下组织的边缲还有异常
+		细胞存在，则可描述为活检组织“边缘不清”。病理报告的第四部分是诊断。在这一部分，病理科医生会给出一个专业性的诊断，说明活检结果是良性还是恶性，也就是“好的”还是“不好的”。但是有时即便是良性，患者也应详细咨询对未来健
+		康有无影响，即取活检的肿瘤有无“恶变”的可能。如果报告结果是恶性，病理科医生会根据对切片的观察，确定该恶性肿瘤的严重程度。有时，病理科医生会对某些疑难病理提出可供参考的报告结果或者提出有助于确定诊断的下一步检查，
+		比如需要相关的免疫组织化学检查。"</p>
+	</div>
+</div>
+{% endblock %}
+{% block scripts %}
+{{super()}}
+<script type="text/javascript">
+function zoomBox() {this.index.apply(this, arguments)}
+zoomBox.prototype = {
+    index: function(win,zoom) {
+        var win=document.getElementById(win);
+        var box=document.getElementById(zoom);
+        var img=box.getElementsByTagName('IMG')[0];
+        var zoom=img.width/win.getElementsByTagName('IMG')[0].width;
+        var z=Math.round(box.offsetWidth/2);
+        win.onmousemove=function (e){
+            e = e || window.event;
+            var x=e.clientX,y=e.clientY, ori=win.getBoundingClientRect();
+            if (x>ori.right+10||y>ori.bottom+10||x<ori.left-10||y<ori.top-10)
+                box.style.display='none';
+            x-=ori.left;
+            y-=ori.top;
+            box.style.left= x-100 +'px';
+            box.style.top= y -100+'px';
+            img.style.left= -x*zoom+ z+'px';
+            img.style.top= -y*zoom + z+'px';
+        }
+        win.onmouseover=function (){box.style.display=''}
+        win.onmouseout=function (){box.style.display='none'}
+    }
+};
+window.onload=function (){
+    x=new zoomBox('zoomPan','zoom');
+}	
+</script>
+{% endblock %}
+{% endblock %}
+

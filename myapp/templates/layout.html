@@ -1,0 +1,19 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}search similar images{% endblock %}
+
+{% block head %}
+<meta http-equiv="pragma" content="no-cache" />
+{{super()}}
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/layout.css')}}">
+<script type="text/javascript" src="{{url_for('static',filename='js/res_images.js')}}"></script>
+{% endblock %}
+{% block content %}
+<div class="container">
+    {% block body %}
+    {% endblock %}
+</div>
+{% endblock %}
+
+
+

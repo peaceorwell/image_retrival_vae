@@ -1,0 +1,161 @@
+body {
+	background-color: #F1F6F5;
+}
+ul {
+	list-style-type:none;
+}
+.page {
+	position: absolute;
+	width: 100%;
+	height: 100%;;
+}
+#logo {
+	height:80px;
+	width:100%;
+	padding: 20px 100px;
+}
+#logo>img {
+	height: 100%;
+}
+#search_box {
+	position: relative;
+	width: 555px;
+	height: 44px;
+	margin-top: 0px; 
+	margin-left: 100px;
+	margin-right: auto;
+	border: 2px solid black;
+	background-color: white;
+}
+#search_form {
+	width: 100%;
+	height: 100%;
+}
+#input_image {
+	height: 100%;
+	font-size: 23px;
+	padding: 3px 3px;
+	margin-top: auto;
+	margin-bottom: auto;
+	border: 0 solid white; 
+}
+#scale {
+	position: relative;
+	top: -40px;
+	left: 438px;
+	width: 117px;
+	height: 100%;
+	padding: 0 0;
+	font-size: 23px;
+}
+#submit {
+	position: relative;
+	top: -40px;
+	left: 120px;
+	width: 117px;
+	height: 100%;
+	float: right;
+	padding: 0 0;
+	font-size: 23px;
+	border: 2px solid blue;
+}
+#results {
+	position: relative;
+	width: 100%;
+	margin-top:20px 100px; 
+	margin-left: 100px;
+	margin-right: auto;
+	padding: 1px 1px;
+}
+#origin {
+	position: relative;
+	width: 100%;
+	height: 500px;
+	margin:20px 100px; 
+	padding: 1px 1px;
+	border: 1px solid green;
+}
+ul.imglist { 
+	margin-left: 0; 
+	width: 80%; 
+	overflow: hidden;
+	padding: 0px;
+} 
+ul.imglist li { 
+	float: left; 
+	padding: 4px 0px; 
+	width: 310px;
+} 
+ul.imglist li img { 
+	display: block; 
+	width:300px; 
+	height:300px;
+} 
+ul.imglist li span { 
+	display: block; 
+	width:100%; height:30px; 
+	line-height:30px; 
+	background:#F6F6F6;
+} 
+#left {
+	height:100%;
+	width: 600px;
+	border: 1px solid green;
+	display: block;
+	float: left;
+	margin-top: -16px;
+}
+#left_text {
+	width:100%;
+	font-size: 22px;
+	height: 30px;
+	margin-left:10px;
+}
+#left_img {
+	width:100%;
+	margin:0 100px;
+}
+#right {
+	border: 1px solid green;
+	display: inline-block;
+	width: 800px;
+	font-size:22px;
+	margin-top: -16px;
+}
+#ori_type {
+	border: 1px solid green;
+	width: 100%;
+}
+.inline_div {
+	display: inline-block;
+}
+.type_name {
+	font-size: 22px;
+}
+.progress {
+	margin: 0 0;
+}
+
+.zoomPan {
+	width: 400px;
+	margin: 25px 100px;
+}
+.sh {
+	zoom: 1;
+	background: #eee;
+	filter:progid:DXImageTransform.Microsoft.dropShadow(color='#54000000', OffX=2,OffY=2);
+}
+#zoom {
+	position: absolute;
+	width: 200px;
+	height: 200px;
+	border:3px solid #fff;
+	left:-9999px;
+	top: 0px;
+	overflow: hidden;
+	background: #fff;
+}
+#zoom img {
+	position:relative;
+}
+
